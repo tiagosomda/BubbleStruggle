@@ -589,9 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6594a46110f71204e804335ad41d619f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveLeft: {fileID: 14320086}
-  moveRight: {fileID: 1739505651}
   rb: {fileID: 0}
+  movement: 0
   speed: 8
   parent: {fileID: 1226867280}
 --- !u!1 &638015429
@@ -806,7 +805,7 @@ Transform:
   m_GameObject: {fileID: 738577636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 1849930837}
   m_RootOrder: 3
