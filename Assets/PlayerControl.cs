@@ -4,18 +4,20 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour {
 
-    public Button moveLeft;
-    public Button moveRight;
+    public static bool moveLeft;
+    public static bool moveRight;
 
     public Rigidbody2D rb;
-    public static float movement;
+    public float movement;
     public float speed = 4f;
 
     public Transform parent;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-	}
+        moveLeft = moveRight = false;
+
+    }
 
     public void Move(float _movement)
     {
@@ -34,6 +36,8 @@ public class PlayerControl : MonoBehaviour {
 
     void FixedUpdate()
     {
+        movement = (moveLeft ? -1 : 0) + (moveRight ? 1 : 0);
+
         rb.MovePosition(rb.position + new Vector2(movement * speed * Time.fixedDeltaTime, 0f));
     }
 }

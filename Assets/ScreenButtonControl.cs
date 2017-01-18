@@ -7,11 +7,26 @@ public class ScreenButtonControl : MonoBehaviour, IPointerDownHandler, IPointerU
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        PlayerControl.movement += isMoveLeft ? -1f : 1f;
+        if(isMoveLeft)
+        {
+            PlayerControl.moveLeft = true;
+        }
+        else
+        {
+            PlayerControl.moveRight = true;
+        }
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        PlayerControl.movement += !isMoveLeft ? -1f : 1f;
+        if (isMoveLeft)
+        {
+            PlayerControl.moveLeft = false;
+        }
+        else
+        {
+            PlayerControl.moveRight = false;
+        }
     }
 }
