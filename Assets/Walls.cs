@@ -25,11 +25,10 @@ public class Walls : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        mapX = mapY = 0;
 
         UpdateCameraValues();
         UpdateWalls();
-
-        Debug.Log(string.Format("min : {0}/{1} max: {2}/{3}", minX, minY, maxX, maxY));
         
     }
 

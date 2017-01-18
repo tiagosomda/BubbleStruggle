@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114427043228494844}
   m_Layer: 10
   m_Name: Ball_3
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startForce: {x: 4, y: 0}
   rb: {fileID: 0}
+  parent: {fileID: 0}
   nextBall: {fileID: 1188747649254922, guid: 03e553f704790364c93e73fdf35c10e4, type: 2}
 --- !u!212 &212921960733099150
 SpriteRenderer:

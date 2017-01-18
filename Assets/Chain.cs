@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Chain : MonoBehaviour {
 
-
     public Transform player;
     public float speed;
 
-    public static bool IsFiring;
+    public bool IsFiring;
 
-    private Vector3 NotFired;
+    public Vector3 NotFired;
 	// Use this for initialization
 	void Start () {
         IsFiring = false;
@@ -34,4 +33,18 @@ public class Chain : MonoBehaviour {
             transform.localScale = NotFired;
         }
 	}
+
+    public void Fire()
+    {
+        IsFiring = true;
+    }
+
+    public void SetNotFiring()
+    {
+        IsFiring = false;
+
+        transform.position = player.position;
+        transform.localScale = NotFired;
+
+    }
 }
