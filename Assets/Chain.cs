@@ -7,7 +7,7 @@ public class Chain : MonoBehaviour {
     public Transform player;
     public float speed;
 
-    public bool IsFiring;
+    public static bool IsFiring;
 
     public Vector3 NotFired;
 	// Use this for initialization
@@ -18,11 +18,6 @@ public class Chain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("Fire1"))
-        {
-            IsFiring = true;
-        }
-
         if(IsFiring)
         {
             transform.localScale += Vector3.up * speed * Time.deltaTime;

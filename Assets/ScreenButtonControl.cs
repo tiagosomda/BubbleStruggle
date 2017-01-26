@@ -3,30 +3,39 @@ using UnityEngine.EventSystems;
 
 public class ScreenButtonControl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public bool isMoveLeft;
+
+    public enum ActionButton { MoveLeft, MoveRight, Fire};
+    public ActionButton action;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(isMoveLeft)
+        if(action == ActionButton.MoveLeft)
         {
-            PlayerControl.moveLeft = true;
+            PlayerMove.moveLeft = true;
         }
-        else
+        else if(action == ActionButton.MoveRight)
         {
-            PlayerControl.moveRight = true;
+            PlayerMove.moveRight = true;
+        } else
+        {
+            Chain.IsFiring = true;
         }
 
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isMoveLeft)
+        if (action == ActionButton.MoveLeft)
         {
-            PlayerControl.moveLeft = false;
+            PlayerMove.moveLeft = false;
         }
-        else
+        else if (action == ActionButton.MoveRight)
         {
-            PlayerControl.moveRight = false;
+            PlayerMove.moveRight = false;
         }
+        //else
+        //{
+        //    Chain.IsFiring = true;
+        //}
     }
 }

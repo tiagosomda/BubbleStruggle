@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 412239286}
   - component: {fileID: 412239285}
   - component: {fileID: 412239289}
+  - component: {fileID: 412239290}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -589,10 +590,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6594a46110f71204e804335ad41d619f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+--- !u!114 &412239290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 412239284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848508141aaac5e42868cb2a8878111e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
   movement: 0
-  speed: 8
-  parent: {fileID: 1226867280}
 --- !u!1 &638015429
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,11 +889,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!4 &811845002 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1484030974}
 --- !u!1 &889931918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1127,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1226867280}
+  - component: {fileID: 1226867281}
   m_Layer: 0
   m_Name: Balls
   m_TagString: Untagged
@@ -1138,11 +1144,25 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0039789677, y: 0.06474042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 811845002}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1226867281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226867279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb000d6a064f2f4ab8ac25de3a5eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  dropPosition: {fileID: 1226867280}
+  ballParent: {fileID: 1226867280}
+  ballPrefab: {fileID: 1188747649254922, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
 --- !u!1 &1461696666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,52 +1250,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1484030974
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1226867280}
-    m_Modifications:
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.9152596
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691105759320298, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188747649254922, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6c0c21c5b794ef94cb3423c6cbeced6b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1734671745
 GameObject:
   m_ObjectHideFlags: 0
