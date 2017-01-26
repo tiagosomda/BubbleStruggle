@@ -14,20 +14,20 @@ public class PlayerMove : MonoBehaviour {
     public static bool moveLeft;
     public static bool moveRight;
 
+    public bool isTouchEnabled;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void SetMove(float _movement)
-    {
-        movement = _movement;
-    }
 
     void FixedUpdate()
     {
-        movement = (moveLeft ? -1 : 0) + (moveRight ? 1 : 0);
+       if(isTouchEnabled)
+        {
+            movement = (moveLeft ? -1 : 0) + (moveRight ? 1 : 0);
+        }
 
         rb.MovePosition(rb.position + new Vector2(movement * speed * Time.fixedDeltaTime, 0f));
     }

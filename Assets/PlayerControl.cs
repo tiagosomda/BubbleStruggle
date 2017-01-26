@@ -5,11 +5,27 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    public bool keyboardEnabled;
     private float horizontal;
-    private void Update()
+
+    public GameObject touchControls;
+
+    public PlayerMove playerMove;
+
+    private void Start()
     {
-        if(!keyboardEnabled)
+        touchControls.SetActive(playerMove.isTouchEnabled);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            playerMove.isTouchEnabled = !playerMove.isTouchEnabled;
+
+            touchControls.SetActive(playerMove.isTouchEnabled);
+        }
+
+        if(playerMove.isTouchEnabled)
         {
             return;
         }
@@ -19,17 +35,6 @@ public class PlayerControl : MonoBehaviour
             Chain.IsFiring = true;
         }
 
-
-        horizontal = Input.GetAxis("Horizontal");
-        if(horizontal < 0)
-        {
-            PlayerMove.moveLeft = true;
-        } else if (horizontal > 0)
-        {
-            PlayerMove.moveRight = true;
-        } else
-        {
-            PlayerMove.moveLeft = PlayerMove.moveRight = false;
-        }
+        playerMove.movement = Input.GetAxis("Horizontal");
     }
 }

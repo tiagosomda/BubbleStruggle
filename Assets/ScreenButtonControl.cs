@@ -33,9 +33,11 @@ public class ScreenButtonControl : MonoBehaviour, IPointerDownHandler, IPointerU
         {
             PlayerMove.moveRight = false;
         }
+
+        // Not firing is handled by the chain script itself
         //else
         //{
-        //    Chain.IsFiring = true;
+        //    Chain.IsFiring = false;
         //}
     }
 }
