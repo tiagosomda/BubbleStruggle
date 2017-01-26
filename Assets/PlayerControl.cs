@@ -5,14 +5,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    private float horizontal;
 
     public GameObject touchControls;
+    private PlayerMove playerMove;
 
-    public PlayerMove playerMove;
-
-    private void Start()
+    void Start()
     {
+        playerMove = GetComponent<PlayerMove>();
         touchControls.SetActive(playerMove.isTouchEnabled);
     }
 
