@@ -19,18 +19,58 @@ public class LevelManager : MonoBehaviour {
     public GameObject nextLevelPanel;
     public Text nextLevelText;
     public Text nextLevelNumber;
+    public float animationTime;
+    public float postAnimationDelay;
+    public Color nextLevelAnimationColor;
+    public int nextLevelAnimationFontSize;
+    
+
+    private bool playAnimation;
+    private float animationCounter;
+    private float postAnimationDelayCounter;
+    private int fontSizeRegular;
+    private Color nextColor;
 
     // Use this for initialization
     void Start () {
-	    	
+        fontSizeRegular = nextLevelNumber.fontSize;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(ballParent.childCount == 0)
+        if(ballParent.childCount == 0 && !playAnimation)
         {
+            playAnimation = true;
+            animationCounter = animationTime;
+            postAnimationDelayCounter = postAnimationDelay;
+            level++;
+            nextColor = GetColor(level);
+            nextLevelNumber.text = level.ToString();
+            nextLevelPanel.SetActive(true);
+        }
+
+        if(playAnimation && animationCounter >= 0)
+        {
+            animationCounter -= Time.deltaTime;
+
+            var color = Color.Lerp(nextColor, Color.white, animationCounter);
+            nextLevelNumber.color = color;
+
+            var size = Mathf.Lerp(nextLevelAnimationFontSize, 0, animationCounter);
+            nextLevelNumber.fontSize = (int)size;
+        }
+
+        if(playAnimation && animationCounter <= 0)
+        {
+            postAnimationDelayCounter -= Time.deltaTime;
+        }
+
+        if(playAnimation && postAnimationDelayCounter <= 0)
+        {
+            nextLevelPanel.SetActive(false);
             NextLevel();
+            playAnimation = false;
         }
 	}
 
@@ -38,9 +78,8 @@ public class LevelManager : MonoBehaviour {
     public void NextLevel()
     {
         Debug.Log("NextLevel :" + level);
-        level++;
-
-        nextLevelNumber.text = level.ToString();
+        //level++;
+        //nextLevelNumber.text = level.ToString();
 
         var ball = Instantiate(ballPrefab, dropPosition.position, Quaternion.identity, ballParent);
 

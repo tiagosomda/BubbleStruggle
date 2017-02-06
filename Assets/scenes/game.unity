@@ -1078,6 +1078,10 @@ MonoBehaviour:
   nextLevelPanel: {fileID: 720697846}
   nextLevelText: {fileID: 1367748251}
   nextLevelNumber: {fileID: 1170038572}
+  animationTime: 0.5
+  postAnimationDelay: 0.5
+  nextLevelAnimationColor: {r: 0, g: 0.37831712, b: 0.78676474, a: 1}
+  nextLevelAnimationFontSize: 170
 --- !u!4 &786791527
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,11 +1380,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 150
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 150
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1438,7 +1442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1367748250
 RectTransform:
   m_ObjectHideFlags: 0
