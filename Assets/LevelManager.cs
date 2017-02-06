@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
-
     public int level;
+    [Header("Ball Settings")]
     public Transform dropPosition;
     public Transform ballParent;
 
@@ -13,8 +14,14 @@ public class LevelManager : MonoBehaviour {
 
     public Color[] levelColors;
 
-	// Use this for initialization
-	void Start () {
+    [Header("HUD Settings")]
+
+    public GameObject nextLevelPanel;
+    public Text nextLevelText;
+    public Text nextLevelNumber;
+
+    // Use this for initialization
+    void Start () {
 	    	
 	}
 	
@@ -32,6 +39,8 @@ public class LevelManager : MonoBehaviour {
     {
         Debug.Log("NextLevel :" + level);
         level++;
+
+        nextLevelNumber.text = level.ToString();
 
         var ball = Instantiate(ballPrefab, dropPosition.position, Quaternion.identity, ballParent);
 
@@ -58,4 +67,5 @@ public class LevelManager : MonoBehaviour {
 
         return levelColors[level - 1];
     }
+
 }
