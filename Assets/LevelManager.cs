@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour {
 
     public int level;
+    public GameManager gameManager;
+
     [Header("Ball Settings")]
     public Transform dropPosition;
     public Transform ballParent;
@@ -18,7 +20,7 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject nextLevelPanel;
     public Text nextLevelText;
-    public Text nextLevelNumber;
+
     public float animationTime;
     public float postAnimationDelay;
     public Color nextLevelAnimationColor;
@@ -33,7 +35,7 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        fontSizeRegular = nextLevelNumber.fontSize;
+        fontSizeRegular = gameManager.gameScore.fontSize;
 	}
 	
 	// Update is called once per frame
@@ -46,7 +48,7 @@ public class LevelManager : MonoBehaviour {
             postAnimationDelayCounter = postAnimationDelay;
             level++;
             nextColor = GetColor(level);
-            nextLevelNumber.text = level.ToString();
+            gameManager.gameScore.text = level.ToString();
             nextLevelPanel.SetActive(true);
         }
 
@@ -55,10 +57,10 @@ public class LevelManager : MonoBehaviour {
             animationCounter -= Time.deltaTime;
 
             var color = Color.Lerp(nextColor, Color.white, animationCounter);
-            nextLevelNumber.color = color;
+            gameManager.gameScore.color = color;
 
             var size = Mathf.Lerp(nextLevelAnimationFontSize, 0, animationCounter);
-            nextLevelNumber.fontSize = (int)size;
+            gameManager.gameScore.fontSize = (int)size;
         }
 
         if(playAnimation && animationCounter <= 0)
@@ -73,7 +75,6 @@ public class LevelManager : MonoBehaviour {
             playAnimation = false;
         }
 	}
-
 
     public void NextLevel()
     {
