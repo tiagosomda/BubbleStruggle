@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-
     public GameObject touchControls;
     private PlayerMove playerMove;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -13,19 +14,7 @@ public class LevelManager : MonoBehaviour {
     public Transform ballParent;
 
     public GameObject ballPrefab;
-
-    public Color[] levelColors;
-
-    [Header("HUD Settings")]
-
-    public GameObject nextLevelPanel;
-    public Text nextLevelText;
-
-    public float animationTime;
-    public float postAnimationDelay;
-    public Color nextLevelAnimationColor;
-    public int nextLevelAnimationFontSize;
-    
+    public Color[] levelColors;  
 
     private bool playAnimation;
     private float animationCounter;
@@ -33,48 +22,72 @@ public class LevelManager : MonoBehaviour {
     private int fontSizeRegular;
     private Color nextColor;
 
+    // game over variables
+    private bool gameOverState;
+    private float gameOverAnimationCounter;
+
     // Use this for initialization
     void Start () {
         fontSizeRegular = gameManager.gameScore.fontSize;
-	}
+        gameOverState = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(ballParent.childCount == 0 && !playAnimation)
+        if(gameOverState)
+        {
+            GameOverLoop();
+            return;
+        }
+
+        GameLoop();
+
+    }
+
+
+    public void GameLoop()
+    {
+        if (ballParent.childCount == 0 && !playAnimation)
         {
             playAnimation = true;
-            animationCounter = animationTime;
-            postAnimationDelayCounter = postAnimationDelay;
+            animationCounter = gameManager.animationTime;
+            postAnimationDelayCounter = gameManager.postAnimationDelay;
             level++;
             nextColor = GetColor(level);
             gameManager.gameScore.text = level.ToString();
-            nextLevelPanel.SetActive(true);
+            gameManager.gameHUD.SetActive(true);
         }
 
-        if(playAnimation && animationCounter >= 0)
+        if (playAnimation && animationCounter >= 0)
         {
             animationCounter -= Time.deltaTime;
 
             var color = Color.Lerp(nextColor, Color.white, animationCounter);
             gameManager.gameScore.color = color;
 
-            var size = Mathf.Lerp(nextLevelAnimationFontSize, 0, animationCounter);
+            var size = Mathf.Lerp(gameManager.nextLevelAnimationFontSize, 0, animationCounter);
             gameManager.gameScore.fontSize = (int)size;
         }
 
-        if(playAnimation && animationCounter <= 0)
+        if (playAnimation && animationCounter <= 0)
         {
             postAnimationDelayCounter -= Time.deltaTime;
         }
 
-        if(playAnimation && postAnimationDelayCounter <= 0)
+        if (playAnimation && postAnimationDelayCounter <= 0)
         {
-            nextLevelPanel.SetActive(false);
+            gameManager.gameHUD.SetActive(false);
             NextLevel();
             playAnimation = false;
         }
-	}
+    }
+
+    public void GameOverLoop()
+    {
+
+    }
 
     public void NextLevel()
     {
@@ -106,6 +119,19 @@ public class LevelManager : MonoBehaviour {
         }
 
         return levelColors[level - 1];
+    }
+
+    public void SetGameOver()
+    {
+        gameOverState = true;
+        gameManager.gameEntities.SetActive(false);
+        gameManager.gameOverHUD.SetActive(true);
+        gameManager.scoreNumber.text = level.ToString();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

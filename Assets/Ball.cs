@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class Ball : MonoBehaviour {
 
     public int level;
@@ -33,11 +33,6 @@ public class Ball : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        //if(nextBall == null)
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
 
         var ball1 = Instantiate(this, transform.position, Quaternion.identity);
         var ball2 = Instantiate(this, transform.position, Quaternion.identity);
@@ -61,7 +56,7 @@ public class Ball : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            levelManager.SetGameOver();
         }
     }
 }
