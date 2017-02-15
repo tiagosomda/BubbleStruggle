@@ -88,12 +88,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e283b78e842b8744cab19ec557615483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   size: 0
   decreaseRate: 0.4
   startForce: {x: 4, y: 0}
   rb: {fileID: 0}
   parent: {fileID: 0}
   nextBall: {fileID: 1188747649254922, guid: 686037368b25ba14890c0a6b7abfc8de, type: 2}
+  levelManager: {fileID: 0}
 --- !u!212 &212921960733099150
 SpriteRenderer:
   m_ObjectHideFlags: 1
